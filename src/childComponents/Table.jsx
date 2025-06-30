@@ -1,10 +1,15 @@
 import React from "react";
-import Inputfild from "../../childComponents/input";
+import Inputfild from "./Input";
 
-function ProductTable({ collums = [], data = [] }) {
+function Table({
+  collums = [],
+  data = [],
+  Customerscollums = [],
+  datOrdersscollumsa = [],
+}) {
   return (
-    <div className="shadow-sm p-3 rounded">
-      <Inputfild class="mb-3 shadow-sm w-50" type="test" placeholder="Search" />
+    <div className="shadow-sm p-3 rounded bg-light">
+      <Inputfild class="shadow-sm w-25" type="test" placeholder="Search" />
       <table class="table">
         <thead className="table-primary">
           <tr>
@@ -36,4 +41,4 @@ function ProductTable({ collums = [], data = [] }) {
   );
 }
 
-export default ProductTable;
+export default Table;

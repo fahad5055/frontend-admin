@@ -1,33 +1,37 @@
 import React from "react";
 import { FaPowerOff } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 function header() {
   return (
     <div>
       <div className="row d-flex">
-        <div className="col-2"></div>
+        <div className="col-2">
+          <h1>LOGO</h1>
+        </div>
         <div className="col-8">
           <nav class="navbar navbar-expand-lg m-auto">
-            <ul class="navbar-nav m-auto">
+            <ul class="navbar-nav m-auto fw-bold">
               <li class="nav-item">
-                <a class="nav-link text-danger" href="#">
+                <Link class="nav-link fw-bold" to="/">
                   Dashboard
-                </a>
+                </Link>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-danger" href="/Products">
-                  Products
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-danger" href="/category">
+                <Link class="nav-link fw-bold" href="/category">
                   Category
-                </a>
+                </Link>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-danger" href="/customers">
+                <Link class="nav-link fw-bold" href="/Products">
+                  Products
+                </Link>
+              </li>
+
+              <li class="nav-item">
+                <Link class="nav-link fw-bold" href="/customers">
                   Customers & Orders
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

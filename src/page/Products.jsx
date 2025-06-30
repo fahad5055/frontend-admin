@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 // childComponents
-import PageTitle from "../childComponents/PageTitle";
-import Button from "../childComponents/button";
-import ProductTable from "../components/Table/products";
+import PageTitle from "../ChildComponents/PageTitle";
+import Button from "../ChildComponents/Button";
+import Table from "../ChildComponents/Table";
 
 // Componets
 import ProductsForm from "../components/Forms/Products";
@@ -77,7 +77,7 @@ function Products() {
       </div>
       <div className="my-5">
         {list ? (
-          <ProductTable collums={collums} data={data} />
+          <Table collums={collums} data={data} />
         ) : (
           <div>
             <ProductsForm />

@@ -1,6 +1,6 @@
 import React from "react";
-import PageTitle from "../childComponents/PageTitle";
-import CategoryTable from "../components/Table/Category";
+import PageTitle from "../ChildComponents/PageTitle";
+import Table from "../ChildComponents/Table";
 import CategoryForm from "../components/Forms/Category";
 
 function Category() {
@@ -57,7 +57,7 @@ function Category() {
             <CategoryForm />
           </div>
           <div className="col-sm-9">
-            <CategoryTable collums={collums} data={data} />
+            <Table collums={collums} data={data} />
           </div>
         </div>
       </div>

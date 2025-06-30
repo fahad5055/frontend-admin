@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import PageTitle from "../childComponents/PageTitle";
-import Button from "../childComponents/button";
-import CustomersTable from "../components/Table/Customers";
+import PageTitle from "../ChildComponents/PageTitle";
+import Button from "../ChildComponents/Button";
+import Table from "../ChildComponents/Table";
 
 function Customers() {
   const collums = [
@@ -22,56 +22,7 @@ function Customers() {
       accesor: "Actions",
     },
   ];
-  const col = [
-    {
-      header: "SL#",
-      accesor: "index",
-    },
-    {
-      header: "ID",
-      accesor: "ID",
-    },
-    {
-      header: "Order",
-      accesor: "Order",
-    },
-    {
-      header: "Customer Name",
-      accesor: "CustomerName",
-    },
-    {
-      header: "Customer Mobile Number",
-      accesor: "CustomerMobileNumber",
-    },
-    {
-      header: "Order Call",
-      accesor: "OrderCall",
-    },
-    {
-      header: "Order Date",
-      accesor: "OrderDate",
-    },
-    {
-      header: "Delivary Date & Time",
-      accesor: "DelivaryDate&Time",
-    },
-    {
-      header: "Orders Status",
-      accesor: "OrdersStatus",
-    },
-    {
-      header: "Payment Status",
-      accesor: "PaymentStatus",
-    },
-    {
-      header: "Payment Mode",
-      accesor: "PaymentMode",
-    },
-    {
-      header: "Actions",
-      accesor: "Actions",
-    },
-  ];
+
   const [data, setData] = useState(true);
 
   return (
@@ -93,14 +44,13 @@ function Customers() {
       <div>
         {data ? (
           <>
-            {" "}
             <PageTitle title="Customer Data" />
-            <CustomersTable collums={collums} />{" "}
+            <Table collums={collums} />
           </>
         ) : (
           <>
             <PageTitle title="Orders data" />
-            <CustomersTable col={col} />
+            <Table collums={collums} />
           </>
         )}
       </div>

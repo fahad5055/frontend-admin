@@ -1,8 +1,8 @@
 import React from "react";
 
 // childComponets
-import Button from "../../childComponents/button";
-import Inputfild from "../../childComponents/input";
+import Button from "../../ChildComponents/Button";
+import Inputfild from "../../ChildComponents/Input";
 
 function ProductsForm() {
   return (

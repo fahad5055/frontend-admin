@@ -3,9 +3,7 @@ import React from "react";
 function Inputfild(props) {
   return (
     <div>
-      <label className={`my-1 text-success ${props.class}`}>
-        {props.label}
-      </label>
+      <label className={`my-1 fw-bold ${props.class}`}>{props.label}</label>
       <input
         type={props.type}
         disabled={props.disabled}
