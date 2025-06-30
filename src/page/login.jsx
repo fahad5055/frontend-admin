@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
+import { loginSuccess } from "../store/action/userActions";
 // inputfield
 import Inputfild from "../ChildComponents/Input";
 
@@ -23,7 +24,7 @@ function Login() {
     mutationFn: (data) => loginApi(data),
     onSuccess: (data) => {
       setLoading(false);
-      dispatch(data.token);
+      dispatch(loginSuccess(data.token));
       navigate("/");
     },
     onError: (error) => {

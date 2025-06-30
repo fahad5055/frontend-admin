@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function header() {
   return (
     <div>
-      <div className="row d-flex">
+      <div className="row d-flex shadow">
         <div className="col-2">
           <h1>LOGO</h1>
         </div>
