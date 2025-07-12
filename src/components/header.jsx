@@ -1,8 +1,20 @@
-import React from "react";
 import { FaPowerOff } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-function header() {
+import { logout } from "../store/action/userActions";
+
+function Header() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    console.log("Logging out...");
+    dispatch(logout());
+    navigate("/login");
+  };
+
   return (
     <div>
       <div className="row d-flex shadow">
@@ -18,18 +30,18 @@ function header() {
                 </Link>
               </li>
               <li class="nav-item">
-                <Link class="nav-link fw-bold" href="/category">
+                <Link class="nav-link fw-bold" to="/category">
                   Category
                 </Link>
               </li>
               <li class="nav-item">
-                <Link class="nav-link fw-bold" href="/Products">
+                <Link class="nav-link fw-bold" to="/Products">
                   Products
                 </Link>
               </li>
 
               <li class="nav-item">
-                <Link class="nav-link fw-bold" href="/customers">
+                <Link class="nav-link fw-bold" to="/customers">
                   Customers & Orders
                 </Link>
               </li>
@@ -37,7 +49,10 @@ function header() {
           </nav>
         </div>
         <div className="col-2  d-flex justify-content-center align-items-center">
-          <button className="btn btn-success ">
+          <button
+            className="btn btn-success "
+            onClick={(e) => logoutHandler(e)}
+          >
             <FaPowerOff />
           </button>
         </div>
@@ -46,4 +61,4 @@ function header() {
   );
 }
 
-export default header;
+export default Header;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { loginApi } from "../store/api/Auth";
 import { useDispatch, useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
@@ -17,9 +17,6 @@ function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const auth = useSelector((state) => state.auth);
-  console.log(auth);
-
   const mutation = useMutation({
     mutationFn: (data) => loginApi(data),
     onSuccess: (data) => {
@@ -33,6 +30,12 @@ function Login() {
       console.log(error.massege);
     },
   });
+
+  const auth = useSelector((state) => state.user);
+
+  if (auth?.token) {
+    return <Navigate to="/" replace />;
+  }
 
   const submitHandler = (e) => {
     e.preventDefault();

@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-
+import ProtectedRoute from "./Logic/ProtectedRoute";
 // components
 import Header from "./Components/header";
 
@@ -18,12 +18,19 @@ function App() {
     <div>
       <Header />
       <Routes>
-        {<Route path="/login" element={<Login />} />}{" "}
-        {<Route path="/" element={<Blank />} />}{" "}
-        {<Route path="*" element={<Login />} />}
-        {<Route path="/category" element={<Category />} />}
-        {<Route path="/products" element={<Products />} />}
-        {<Route path="/customers" element={<Customers />} />}
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Blank />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<Login />} />
+        <Route path="/category" element={<Category />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/customers" element={<Customers />} />
       </Routes>
       <ToastContainer />
     </div>
