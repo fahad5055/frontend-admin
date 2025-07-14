@@ -4,14 +4,14 @@ import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./Logic/ProtectedRoute";
 // components
-import Header from "./components/header";
+import Header from "./Components/Header";
 
 // pages
-import Login from "./page/Login";
-import Category from "./page/Category";
-import Products from "./page/Products";
-import Customers from "./page/Customers";
-import Dashboard from "./page/Dashboard";
+import Login from "./Page/Login";
+import Category from "./Page/Category";
+import Products from "./Page/Products";
+import Customers from "./Page/Customers";
+import Dashboard from "./Page/Dashboard";
 
 function App() {
   return (

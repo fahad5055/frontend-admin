@@ -5,11 +5,7 @@ import { encryptTransform } from "redux-persist-transform-encrypt";
 
 import storage from "redux-persist/lib/storage";
 
-<<<<<<< HEAD
 import rootReducer from "./reducer/rootReducer";
-=======
-import rootReducer from "./reducers/rootReducer";
->>>>>>> 0c9eb2355c2059085b89fc82d3bb87aea3114ca6
 
 const encryptor = encryptTransform({
   secretKey: "123",
