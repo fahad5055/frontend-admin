@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 
 // inputfield
 import Inputfild from "../ChildComponents/Input";
+// actions
+import { loginSuccess } from "../store/action/userActions";
 
 function Login() {
   const dispatch = useDispatch();
@@ -16,14 +18,12 @@ function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const auth = useSelector((state) => state.auth);
-  console.log(auth);
-
   const mutation = useMutation({
     mutationFn: (data) => loginApi(data),
     onSuccess: (data) => {
       setLoading(false);
-      dispatch(data.token);
+      dispatch(loginSuccess(data.token));
+      toast.success("Successfully Login");
       navigate("/");
     },
     onError: (error) => {
@@ -32,6 +32,12 @@ function Login() {
       console.log(error.massege);
     },
   });
+
+  const auth = useSelector((state) => state.user);
+
+  if (auth?.token) {
+    return <navigate to="/" replace />;
+  }
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -45,6 +51,12 @@ function Login() {
       setTimeout(() => setError(" "), 5000);
     }
   };
+
+  const setValue = (e) => {
+    setEmail("admin@gmail.com");
+    setPassword("asdf");
+  };
+
   return (
     <div>
       <div className="form">
@@ -81,6 +93,12 @@ function Login() {
                 <button type="submit" className="btn btn-success">
                   {" "}
                   {loading ? "Loading.." : "Login"}
+                </button>
+                <button
+                  className="btn btn-success ms-2"
+                  onClick={(e) => setValue(e)}
+                >
+                  Set
                 </button>
               </div>
             </div>

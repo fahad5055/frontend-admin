@@ -11,6 +11,7 @@ import Login from "./page/Login";
 import Category from "./page/Category";
 import Products from "./page/Products";
 import Customers from "./page/Customers";
+import Dashboard from "./page/Dashboard";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         {<Route path="/category" element={<Category />} />}
         {<Route path="/Products" element={<Products />} />}
         {<Route path="/customers" element={<Customers />} />}
+        {<Route path="/" element={<Dashboard />} />}
       </Routes>
       <ToastContainer />
     </div>
