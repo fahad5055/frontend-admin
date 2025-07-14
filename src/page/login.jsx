@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { loginApi } from "../store/api/Auth";
 import { useDispatch, useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
+import { loginSuccess } from "../store/action/userActions";
 // inputfield
 import Inputfild from "../ChildComponents/Input";
 // actions
-import { loginSuccess } from "../store/action/userActions";
-
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();

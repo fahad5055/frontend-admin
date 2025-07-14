@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-
+import ProtectedRoute from "./Logic/ProtectedRoute";
 // components
 import Header from "./components/header";
 

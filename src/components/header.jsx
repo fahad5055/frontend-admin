@@ -1,4 +1,3 @@
-import React from "react";
 import { FaPowerOff } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -20,7 +19,7 @@ function Header() {
 
   return (
     <div>
-      <div className="row d-flex">
+      <div className="row d-flex shadow">
         <div className="col-2">
           <h1>LOGO</h1>
         </div>
