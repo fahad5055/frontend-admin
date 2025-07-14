@@ -1,24 +1,16 @@
+// ProtectedRoute.js
 import { useSelector } from "react-redux";
-import { Navigate, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = () => {
   const auth = useSelector((state) => state.user);
   const location = useLocation();
 
-  useEffect(() => {
-    console.log("Route changed to:", location.pathname);
-  }, [location.pathname]);
-
   if (!auth?.token) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/login" replace state={{ from: location }} />;
   }
 
-  if (auth?.token) {
-    return <Navigate to="/" replace />;
-  }
-
-  return children;
+  return <Outlet />;
 };
 
 export default ProtectedRoute;

@@ -35,7 +35,7 @@ function Login() {
   const auth = useSelector((state) => state.user);
 
   if (auth?.token) {
-    return <navigate to="/" replace />;
+    return <Navigate to="/" replace />;
   }
 
   const submitHandler = (e) => {

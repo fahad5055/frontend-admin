@@ -18,13 +18,17 @@ function App() {
     <div>
       <Header />
       <Routes>
-        {<Route path="/login" element={<Login />} />}{" "}
-        {<Route path="*" element={<Login />} />}
-        {<Route path="/category" element={<Category />} />}
-        {<Route path="/Products" element={<Products />} />}
-        {<Route path="/customers" element={<Customers />} />}
-        {<Route path="/" element={<Dashboard />} />}
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Login />} />
+
+        <Route path="/" element={<ProtectedRoute redirectTo="/login" />}>
+          <Route path="/category" element={<Category />} />
+          <Route path="/Products" element={<Products />} />
+          <Route path="/customers" element={<Customers />} />
+          <Route path="/" element={<Dashboard />} />
+        </Route>
       </Routes>
+
       <ToastContainer />
     </div>
   );

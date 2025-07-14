@@ -13,7 +13,7 @@ function Header() {
   const logoutHandlar = (e) => {
     console.log("Logging out...");
     dispatch(logout());
-    toast.success("Logout Successfully");
+    // toast.success("Logout Successfully");
     navigate("/login");
   };
 
