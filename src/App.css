@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.logo {
+  width: 45px;
+  margin-left: 50px;
+}
+
+.nav-link:hover {
+  color: #ebebf1;
+  background-color: #2c2ad1;
+  border-radius: 3px;
+}
+
+.Search {
+  width: 350px;
+}

@@ -1,63 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import PageTitle from "../ChildComponents/PageTitle";
 import Table from "../ChildComponents/Table";
-import CategoryForm from "../Components/Forms/Category";
+import CategoryForm from "../components/Forms/Category";
 
 function Category() {
+  const [categoryList, setCategoryList] = useState([]);
+
   const collums = [
-    {
-      header: "SL#",
-      accesor: "index",
-    },
-    {
-      header: "Category Name",
-      accesor: "CategoryName",
-    },
-    {
-      header: "Category Slug",
-      accesor: "CategorySlug",
-    },
-    {
-      header: "Action",
-      accesor: "Action",
-    },
+    { header: "SL", accesor: "index" },
+    { header: "Category Name", accesor: "CategoryName" },
+    { header: "Category Slug", accesor: "CategorySlug" },
+    { header: "Action", accesor: "action" },
   ];
 
-  const showData = [
-    {
-      CategoryName: "alu",
-      CategorySlug: "alu",
-    },
-    {
-      CategoryName: "potol",
-      CategorySlug: "potol",
-    },
-    {
-      CategoryName: "egg",
-      CategorySlug: "egg",
-    },
-    {
-      CategoryName: "banana",
-      CategorySlug: "banana",
-    },
-  ];
+  // Function passed to CategoryForm
+  const handleAddCategory = (newCategory) => {
+    const updated = [
+      ...categoryList,
+      {
+        index: categoryList.length + 1,
+        CategoryName: newCategory.name,
+        CategorySlug: newCategory.slug,
+        action: <button className="btn btn-danger btn-sm">Edit</button>,
+      },
+    ];
+    setCategoryList(updated);
+  };
 
-  const data = showData.map((name, i) => ({
-    index: i + 1,
-    CategoryName: name.CategoryName,
-    CategorySlug: name.CategorySlug,
-    action: <button className="btn btn-danger">Edit</button>,
-  }));
   return (
     <div className="my-4">
       <div className="container-fluid">
         <PageTitle title="Product main category" />
         <div className="row">
           <div className="col-sm-3">
-            <CategoryForm />
+            <CategoryForm onAddCategory={handleAddCategory} />
           </div>
           <div className="col-sm-9">
-            <Table collums={collums} data={data} />
+            <Table collums={collums} data={categoryList} />
           </div>
         </div>
       </div>

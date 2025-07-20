@@ -1,9 +1,14 @@
+import "../App.css";
 import { FaPowerOff } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+// image
+// import logo from "../../public/Image/logo.png";
+
+// action
 import { logout } from "../store/action/userActions";
 
 function Header() {
@@ -19,9 +24,12 @@ function Header() {
 
   return (
     <div>
-      <div className="row d-flex shadow">
+      <div className="container-fluid shadow-sm bg-white py-2 d-flex align-items-center">
         <div className="col-2">
-          <h1>LOGO</h1>
+          <div className="d-flex align-items-center">
+            <img src="/Image/logo.png" alt="Logo" className="logo" />
+            <h4 className="p-2 mt-1">Admin</h4>
+          </div>
         </div>
         <div className="col-8">
           <nav class="navbar navbar-expand-lg m-auto">

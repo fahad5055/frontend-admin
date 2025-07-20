@@ -1,5 +1,6 @@
 import React from "react";
 import Inputfild from "./Input";
+import "../../src/App.css";
 
 function Table({
   collums = [],
@@ -9,7 +10,9 @@ function Table({
 }) {
   return (
     <div className="shadow-sm p-3 rounded bg-light">
-      <Inputfild class="shadow-sm w-25" type="test" placeholder="Search" />
+      <div className="d-flex justify-content-end pb-1 mb-2">
+        <Inputfild class="Search" type="test" placeholder="Search" />
+      </div>
       <table class="table">
         <thead className="table-primary">
           <tr>
@@ -31,9 +34,11 @@ function Table({
               ))}{" "}
             </>
           ) : (
-            <div className="my-3 text-center fw-bold">
-              <p>No Data Available</p>
-            </div>
+            <tr>
+              <td colSpan={collums.length} className="text-center fw-bold py-3">
+                No Data Available
+              </td>
+            </tr>
           )}
         </tbody>
       </table>

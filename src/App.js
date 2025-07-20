@@ -5,14 +5,14 @@ import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./Logic/ProtectedRoute";
 import { useSelector } from "react-redux";
 // components
-import Header from "./Components/Header";
+import Header from "./components/Header";
 
 // pages
-import Login from "./Page/Login";
-import Category from "./Page/Category";
-import Products from "./Page/Products";
-import Customers from "./Page/Customers";
-import Dashboard from "./Page/Dashboard";
+import Login from "./page/Login";
+import Category from "./page/Category";
+import Products from "./page/Products";
+import Customers from "./page/Customers";
+import Dashboard from "./page/Dashboard";
 
 function App() {
   const location = useLocation();

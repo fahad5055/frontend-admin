@@ -5,7 +5,7 @@ import Button from "../ChildComponents/Button";
 import Table from "../ChildComponents/Table";
 
 // Componets
-import ProductsForm from "../Components/Forms/Products";
+import ProductsForm from "../components/Forms/Products";
 
 function Products() {
   const [list, setList] = useState(true);
