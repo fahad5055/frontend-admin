@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./Logic/ProtectedRoute";
 import { useSelector } from "react-redux";
 // components
-import Header from "./components/Header";
+import Header from "./Components/Header";
 
 // pages
 import Login from "./Pages/Login";

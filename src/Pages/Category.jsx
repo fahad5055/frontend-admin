@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PageTitle from "../ChildComponents/PageTitle";
 import Table from "../ChildComponents/Table";
-import CategoryForm from "../components/Forms/Category";
+import CategoryForm from "../Components/Forms/Category";
 
 function Category() {
   const [categoryList, setCategoryList] = useState([]);
