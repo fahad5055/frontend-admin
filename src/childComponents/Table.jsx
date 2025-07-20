@@ -11,28 +11,27 @@ function Table({
   return (
     <div className="shadow-sm p-3 rounded bg-light">
       <div className="d-flex justify-content-end pb-1 mb-2">
-        <Inputfild class="Search" type="test" placeholder="Search" />
+        <Inputfild class="Search" type="text" placeholder="Search" />
       </div>
-      <table class="table">
+      <table className="table">
         <thead className="table-primary">
           <tr>
-            {collums.map((col, i) => {
-              return <th key={i}>{col.header}</th>;
-            })}
+            {collums.map((col, i) => (
+              <th key={i}>{col.header}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {data.length > 0 ? (
-            <>
-              {data.map((e, i) => (
-                <tr key={e.i}>
-                  <td>{i + 1}</td>
-                  <td>{e.CategoryName}</td>
-                  <td>{e.CategorySlug}</td>
-                  <td>{e.action}</td>
-                </tr>
-              ))}{" "}
-            </>
+            data.map((row, index) => (
+              <tr key={row._id || index}>
+                {collums.map((col, i) => (
+                  <td key={i}>
+                    {col.accessor === "index" ? index + 1 : row[col.accessor]}
+                  </td>
+                ))}
+              </tr>
+            ))
           ) : (
             <tr>
               <td colSpan={collums.length} className="text-center fw-bold py-3">

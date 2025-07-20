@@ -3,7 +3,6 @@ import { useNavigate, Navigate } from "react-router-dom";
 import { loginApi } from "../store/api/Auth";
 import { useDispatch, useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
 
 import { loginSuccess } from "../store/action/userActions";
 // inputfield
@@ -22,13 +21,15 @@ function Login() {
     onSuccess: (data) => {
       setLoading(false);
       dispatch(loginSuccess(data.token));
-      toast.success("Successfully Login");
       navigate("/");
     },
     onError: (error) => {
+      const errorMessage =
+        error.response?.data?.message || error.message || "An error occurred";
       setLoading(false);
-      toast.error(error.massege);
-      console.log(error.massege);
+      setError(errorMessage);
+      console.log(errorMessage);
+      setTimeout(() => setError(""), 5000);
     },
   });
 
@@ -46,7 +47,7 @@ function Login() {
     } catch (error) {
       setLoading(false);
       console.error("Caught error in handleSubmit:", error.message);
-      setError(error.message);
+      setError(error);
       setTimeout(() => setError(" "), 5000);
     }
   };
@@ -87,7 +88,7 @@ function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <p>{error}</p>
+              <p className="text-center text-danger fw-bold">{error}</p>
               <div className="d-flex justify-content-center">
                 <button type="submit" className="btn btn-success">
                   {" "}
