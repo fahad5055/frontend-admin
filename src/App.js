@@ -8,11 +8,11 @@ import { useSelector } from "react-redux";
 import Header from "./components/Header";
 
 // pages
-import Login from "./page/Login";
-import Category from "./page/Category";
-import Products from "./page/Products";
-import Customers from "./page/Customers";
-import Dashboard from "./page/Dashboard";
+import Login from "./Pages/Login";
+import Category from "./Pages/Category";
+import Products from "./Pages/Products";
+import Customers from "./Pages/Customers";
+import Dashboard from "./Pages/Dashboard";
 
 function App() {
   const location = useLocation();
