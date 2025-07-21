@@ -2,32 +2,30 @@ import React from "react";
 import Inputfild from "./Input";
 import "../../src/App.css";
 
-function Table({
-  collums = [],
-  data = [],
-  Customerscollums = [],
-  datOrdersscollumsa = [],
-}) {
+function Table({ collums = [], data = [] }) {
   return (
     <div className="shadow-sm p-3 rounded bg-light">
       <div className="d-flex justify-content-end pb-1 mb-2">
         <Inputfild class="Search" type="text" placeholder="Search" />
       </div>
-      <table className="table">
+
+      <table className="table w-100" style={{ tableLayout: "fixed" }}>
         <thead className="table-primary">
           <tr>
             {collums.map((col, i) => (
-              <th key={i}>{col.header}</th>
+              <th key={i} className="text-center">
+                {col.header}
+              </th>
             ))}
           </tr>
         </thead>
         <tbody>
           {data.length > 0 ? (
-            data.map((row, index) => (
-              <tr key={row._id || index}>
-                {collums.map((col, i) => (
-                  <td key={i}>
-                    {col.accessor === "index" ? index + 1 : row[col.accessor]}
+            data.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                {collums.map((col, colIndex) => (
+                  <td key={colIndex} className="text-center">
+                    {row[col.accessor]}
                   </td>
                 ))}
               </tr>

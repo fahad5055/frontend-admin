@@ -7,10 +7,12 @@ import Button from "../../ChildComponents/Button";
 import Inputfild from "../../ChildComponents/Input";
 import { CreateCategory } from "../../store/api/CategoryApi";
 
-function CategoryForm({ onAddCategory }) {
+function Categoryform() {
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
   const [loading, setLoading] = useState("");
+  const [error, setError] = useState("");
+
   const [image, setImage] = useState(null); // optional
   const [coverImage, setCoverImage] = useState(null); // optional
 
@@ -19,6 +21,7 @@ function CategoryForm({ onAddCategory }) {
     onSuccess: (data) => {
       setLoading(false);
       toast.success(data.message);
+      refreshCategory();
     },
     onError: (error) => {
       const errorMessage =
@@ -32,11 +35,14 @@ function CategoryForm({ onAddCategory }) {
   const submitHandler = (e) => {
     e.preventDefault();
     setLoading(true);
-    if (!name || !slug) {
-      toast.warning("Please enter category name and slug");
-      return;
-    }
+    setError(error);
     mutation.mutate({ name, slug });
+  };
+  const refreshCategory = () => {
+    setName("");
+    setSlug("");
+    setImage(null);
+    setCoverImage(null);
   };
 
   return (
@@ -69,6 +75,7 @@ function CategoryForm({ onAddCategory }) {
           type="file"
           onChange={(e) => setCoverImage(e.target.files[0])}
         />
+        <p className="text-center text-danger fw-bold">{error}</p>
 
         <div className="d-flex justify-content-center mt-3">
           <Button title="Create" className="btn-success" type="submit" />
@@ -78,4 +85,4 @@ function CategoryForm({ onAddCategory }) {
   );
 }
 
-export default CategoryForm;
+export default Categoryform;

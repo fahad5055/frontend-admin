@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import PageTitle from "../ChildComponents/PageTitle";
 import Table from "../ChildComponents/Table";
 import CategoryForm from "../Components/Forms/Category";
+import { FaEdit } from "react-icons/fa";
 
 import { useGetCategory } from "../store/api/CategoryApi";
 
@@ -15,18 +16,27 @@ function Category() {
     data: categoryData,
     isLoading: isRoleLoading,
     error: roleError,
-  } = useQuery({ queryKey: "category", queryFn: getCategory });
+  } = useQuery({
+    queryKey: "category",
+    queryFn: getCategory,
+    refetchInterval: 1000, // ⏱ Auto-refetch every 1 seconds
+    refetchOnWindowFocus: true,
+  });
 
   console.log(categoryData);
 
   const columns = [
     {
-      header: "SL#",
+      header: "SL",
       accessor: "index",
     },
     {
       header: "Name",
       accessor: "title",
+    },
+    {
+      header: "Slug",
+      accessor: "slug",
     },
     {
       header: "Actions",
@@ -38,19 +48,11 @@ function Category() {
     ?.map((category, index) => ({
       index: index + 1,
       title: category?.name,
+      slug: category?.slug,
       actionButton: (
         <>
-          <button
-            // onClick={() => onEdit(category)} // Uncomment and define onEdit handler
-            className="btn text-success mx-2"
-          >
-            Edit
-          </button>
-          <button
-            // onClick={() => onDelete(category._id)} // Optional delete
-            className="btn text-danger mx-2"
-          >
-            Delete
+          <button className="btn text-dark mx-2">
+            <FaEdit />
           </button>
         </>
       ),
