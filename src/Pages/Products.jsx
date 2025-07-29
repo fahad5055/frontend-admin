@@ -26,10 +26,8 @@ function Products() {
   const getProduct = useGetProduct();
 
   const { data: productData } = useQuery({
-    queryKey: "product",
+    queryKey: ["product"],
     queryFn: getProduct,
-    refetchInterval: 1000,
-    refetchOnWindowFocus: true,
   });
 
   const collums = [

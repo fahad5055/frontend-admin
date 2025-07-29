@@ -26,7 +26,7 @@ function Customers() {
   const [data, setData] = useState(true);
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid my-5">
       <div className="col-5 mb-3 d-flex ">
         <Button
           title="Customers"

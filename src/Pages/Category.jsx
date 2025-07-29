@@ -12,10 +12,8 @@ function Category() {
   const getCategory = useGetCategory();
 
   const { data: categoryData } = useQuery({
-    queryKey: "category",
+    queryKey: ["categories"],
     queryFn: getCategory,
-    refetchInterval: 1000,
-    refetchOnWindowFocus: true,
   });
 
   const columns = [

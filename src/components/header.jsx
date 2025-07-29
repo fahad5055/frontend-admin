@@ -45,7 +45,7 @@ function Header() {
                 </Link>
               </li>
               <li class="nav-item">
-                <Link class="nav-link fw-bold" to="/Products">
+                <Link class="nav-link fw-bold" to="/products">
                   Products
                 </Link>
               </li>

@@ -33,7 +33,7 @@ function App() {
 
         <Route path="/" element={<ProtectedRoute redirectTo="/login" />}>
           <Route path="/category" element={<Category />} />
-          <Route path="/Products" element={<Products />} />
+          <Route path="/products" element={<Products />} />
           <Route path="/customers" element={<Customers />} />
           <Route path="/" element={<Dashboard />} />
         </Route>

@@ -1,33 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Inputfild from "./Input";
 import TableFormTitle from "./TableFormTitle";
 import "../../src/App.css";
 
 function Table({ collums = [], data = [], itemsPerPage = 5 }) {
   const [query, setQuery] = useState("");
-  const [filteredData, setFilteredData] = useState(data);
   const [currentPage, setCurrentPage] = useState(1);
 
-  // 🔍 Filter data based on search query
-  useEffect(() => {
+  // useMemo to filter data based on query, collums, and data changes
+  const filteredData = useMemo(() => {
     const lowerQuery = query.toLowerCase();
-    const result = data.filter((item) =>
+    return data.filter((item) =>
       collums.some((col) => {
         const value = item[col.accessor];
         return value?.toString().toLowerCase().includes(lowerQuery);
       })
     );
-    setFilteredData(result);
-    setCurrentPage(1); // Reset to page 1 when search changes
   }, [query, data, collums]);
 
-  // 📊 Pagination logic
+  // Pagination calculations
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedData = filteredData.slice(
     startIndex,
     startIndex + itemsPerPage
   );
+
+  // Reset to first page when query changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [query]);
 
   return (
     <div className="shadow-sm p-1 rounded bg-light">

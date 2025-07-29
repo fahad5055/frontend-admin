@@ -54,8 +54,8 @@ function Login() {
   };
 
   const setValue = (e) => {
-    setEmail("admin@gmail.com");
-    setPassword("asdf");
+    setEmail("fahadhasan1173@gmail.com");
+    setPassword("fahad5055");
   };
 
   return (

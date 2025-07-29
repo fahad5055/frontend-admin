@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../../../src/App.css";
 import { toast } from "react-toastify";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 // child components
 import Button from "../../ChildComponents/Button";
@@ -11,6 +11,8 @@ import Inputfild from "../../ChildComponents/Input";
 import { CreateCategory, UpdateCategory } from "../../store/api/CategoryApi";
 
 function Categoryform({ category = null, onSuccess }) {
+  const queryClient = useQueryClient();
+
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
   const [image, setImage] = useState(null);
@@ -41,9 +43,7 @@ function Categoryform({ category = null, onSuccess }) {
       setLoading(false);
       toast.success(data.message || "Success");
       resetCategory();
-      if (onSuccess) {
-        onSuccess(); // Call parent to refetch updated data
-      }
+      queryClient.invalidateQueries(["categories"]);
     },
     onError: (error) => {
       const errorMessage =
