@@ -1,34 +1,55 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../../src/App.css";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
+
 // child components
 import Button from "../../ChildComponents/Button";
 import Inputfild from "../../ChildComponents/Input";
-import { CreateCategory } from "../../store/api/CategoryApi";
 
-function Categoryform() {
+// API
+import { CreateCategory, UpdateCategory } from "../../store/api/CategoryApi";
+
+function Categoryform({ category = null, onSuccess }) {
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
-  const [loading, setLoading] = useState("");
+  const [image, setImage] = useState(null);
+  const [coverImage, setCoverImage] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const [image, setImage] = useState(null); // optional
-  const [coverImage, setCoverImage] = useState(null); // optional
+  const isEdit = !!category;
+
+  useEffect(() => {
+    if (isEdit) {
+      setName(category.name || "");
+      setSlug(category.slug || "");
+    } else {
+      resetCategory();
+    }
+  }, [category]);
 
   const mutation = useMutation({
-    mutationFn: (data) => CreateCategory(data),
+    mutationFn: (data) => {
+      if (isEdit) {
+        return UpdateCategory({ id: category._id, ...data });
+      } else {
+        return CreateCategory(data);
+      }
+    },
     onSuccess: (data) => {
       setLoading(false);
-      toast.success(data.message);
-      refreshCategory();
+      toast.success(data.message || "Success");
+      resetCategory();
+      if (onSuccess) {
+        onSuccess(); // Call parent to refetch updated data
+      }
     },
     onError: (error) => {
       const errorMessage =
         error.response?.data?.message || error.message || "An error occurred";
       setLoading(false);
-      toast.error(errorMessage);
-      console.log(errorMessage);
+      setError(errorMessage);
     },
   });
 
@@ -38,7 +59,8 @@ function Categoryform() {
     setError(error);
     mutation.mutate({ name, slug });
   };
-  const refreshCategory = () => {
+
+  const resetCategory = () => {
     setName("");
     setSlug("");
     setImage(null);
@@ -47,8 +69,10 @@ function Categoryform() {
 
   return (
     <form onSubmit={submitHandler}>
-      <div className="my-5 shadow p-3 rounded bg-secondary text-white">
-        <p className="fw-bold d-flex justify-content-center">Create Category</p>
+      <div className="my-3 shadow p-3 rounded bg-secondary text-white">
+        <p className="fw-bold d-flex justify-content-center">
+          {isEdit ? "Update Category" : "Create Category"}
+        </p>
 
         <Inputfild
           label="Name"
@@ -75,10 +99,34 @@ function Categoryform() {
           type="file"
           onChange={(e) => setCoverImage(e.target.files[0])}
         />
-        <p className="text-center text-danger fw-bold">{error}</p>
+
+        {error && <p className="error text-center fw-bold">{error}</p>}
+        {loading && (
+          <div className="loading-overlay text-center">
+            <div className="pulse-dots">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <p>{loading}</p>
+          </div>
+        )}
 
         <div className="d-flex justify-content-center mt-3">
-          <Button title="Create" className="btn-success" type="submit" />
+          <Button
+            title={
+              loading
+                ? isEdit
+                  ? "Updating..."
+                  : "Creating..."
+                : isEdit
+                ? "Update"
+                : "Create"
+            }
+            className={isEdit ? "btn-warning" : "btn-success"}
+            type="submit"
+            disabled={loading}
+          />
         </div>
       </div>
     </form>

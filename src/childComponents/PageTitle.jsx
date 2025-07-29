@@ -1,11 +1,10 @@
 import React from "react";
+import "../../src/App.css";
 
 function PageTitle(props) {
   return (
     <div>
-      <h3 className="h3 mb-2 p-1 fw-bold border-bottom border-success d-flex justify-content-center">
-        {props.title}
-      </h3>
+      <h3 className="PageTitle d-flex justify-content-center">{props.title}</h3>
     </div>
   );
 }

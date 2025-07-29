@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "../../src/App.css";
+
 import { useNavigate, Navigate } from "react-router-dom";
 import { loginApi } from "../store/api/Auth";
 import { useDispatch, useSelector } from "react-redux";
@@ -87,7 +89,18 @@ function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <p className="text-center text-danger fw-bold">{error}</p>
+              {error && <div className="error">{error}</div>}
+              {loading && (
+                <div className="loading-overlay text-center">
+                  <div className="orbit-dots">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                  <p>{loading}</p>
+                </div>
+              )}
               <div className="d-flex justify-content-center">
                 <button type="submit" className="btn btn-success">
                   {" "}

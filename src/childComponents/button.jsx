@@ -1,10 +1,11 @@
 import React from "react";
+import "../../src/App.css";
 
 function Button(props) {
   return (
     <button
       type={props.type}
-      className={`btn  mt-3 ${props.className}`}
+      className={`btn-custom ${props.className}`}
       onClick={props.onClick}
     >
       {props.title}

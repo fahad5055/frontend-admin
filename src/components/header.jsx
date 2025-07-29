@@ -1,5 +1,5 @@
 import "../App.css";
-import { FaPowerOff } from "react-icons/fa6";
+import { IoMdExit } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -58,12 +58,13 @@ function Header() {
             </ul>
           </nav>
         </div>
-        <div className="col-2  d-flex justify-content-center align-items-center">
+        <div className="col-2  d-flex justify-content-end ">
           <button
-            className="btn btn-success "
-            onClick={(e) => logoutHandlar(e)}
+            className="p-2 button d-flex align-items-center gap-1 shadow me-5"
+            onClick={logoutHandlar}
           >
-            <FaPowerOff />
+            Logout
+            <IoMdExit />
           </button>
         </div>
       </div>

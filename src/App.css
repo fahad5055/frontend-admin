@@ -52,3 +52,174 @@
 .Search {
   width: 350px;
 }
+
+.error {
+  display: flex;
+  justify-content: center;
+  background-color: #d1fae5; /* Light green background */
+  color: #e53e28; /* Dark green text */
+  padding: 12px 16px;
+  border-left: 6px solid #036445; /* Green left border */
+  border-right: 6px solid #036445; /* Green rignt border */
+  border-radius: 6px;
+  font-weight: 600;
+  max-width: 500px;
+  margin: 10px auto;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.PageTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #ffffff;
+  margin: 10px;
+  padding: 5px 5px;
+  background: linear-gradient(90deg, #007cf0, #00dfd8);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 124, 240, 0.3);
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.TableForm-Title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #212529;
+  background-color: #f8f9fa;
+  padding: 3px 8px;
+  border-left: 5px solid #0d6efd;
+  border-right: 5px solid #0d6efd; /* Bootstrap primary color */
+  margin-bottom: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.btn-custom {
+  background-color: #007cf0; /* Solid blue */
+  color: #fff; /* White text */
+  padding: 9px 18px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 124, 240, 0.4);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.3s ease;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer effect */
+.btn-custom::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0.2)
+  );
+  transform: skewX(-25deg);
+  transition: left 0.7s ease;
+  pointer-events: none;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.btn-custom:hover {
+  background-color: #004ea8; /* Darker blue on hover */
+  box-shadow: 0 0 8px 2px rgba(0, 91, 181, 0.7),
+    0 0 20px 5px rgba(6, 120, 235, 0.4),
+    inset 0 0 10px 2px rgba(255, 255, 255, 0.3);
+  transform: scale(1.07);
+}
+
+.btn-custom:hover::before {
+  left: 125%;
+  transition: left 0.7s ease;
+}
+
+/* Make sure button text is on top */
+.btn-custom > * {
+  position: relative;
+  z-index: 2;
+}
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Orbit Loader */
+.orbit-dots {
+  position: relative;
+  width: 70px;
+  height: 70px;
+}
+
+.orbit-dots div {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: orbit 1.5s linear infinite;
+}
+
+/* Circle Colors + Delay */
+.orbit-dots div:nth-child(1) {
+  background-color: #e53e28; /* red */
+  animation-delay: 0s;
+}
+.orbit-dots div:nth-child(2) {
+  background-color: chartreuse; /* green */
+  animation-delay: 0.2s;
+}
+.orbit-dots div:nth-child(3) {
+  background-color: teal; /* teal */
+  animation-delay: 0.4s;
+}
+.orbit-dots div:nth-child(4) {
+  background-color: #ff9800; /* orange */
+  animation-delay: 0.6s;
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(25px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(25px) rotate(-360deg);
+  }
+}
+
+.button {
+  position: relative;
+  padding: 10px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b); /* Red gradient */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 75, 43, 0.3);
+  overflow: hidden;
+}
